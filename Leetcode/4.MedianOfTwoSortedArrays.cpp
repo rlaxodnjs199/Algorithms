@@ -29,7 +29,7 @@ class Solution {
             maxl = nums1[mid1 - 1];
           }
           else {
-            maxl = std::max(nums1[mid1 - 1], nums2[mid2 - 1])
+            maxl = std::max(nums1[mid1 - 1], nums2[mid2 - 1]);
           }
           if ((m + n) % 2) {
             return maxl;
