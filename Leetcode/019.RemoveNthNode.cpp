@@ -31,7 +31,7 @@ int main() {
     temp = temp->next;
   }
   Solution s;
-  ListNode* result = s.removeNthFromEnd(head, 2);
+  ListNode* result = s.removeNthFromEnd(head, 5);
   while (result) {
     std::cout << result->val << "->";
     result = result->next;
