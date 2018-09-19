@@ -87,7 +87,28 @@ int main() {
 
 /*
 1. Idea
-This is a slight modification of 3sum problem. Now instead of setting one pivot, we set two pivots and place two pointers at the left and right end after that. Running time is basically O(n^3).
+This is a slight modification of 3sum problem. 
+Now instead of setting one pivot, 
+we set two pivots and place two pointers at the left and right end after that. 
+Running time is basically O(n^3).
 Another way to do this is using a hashmap.
-By scanning two entries at a time, we fill out the hashmap which has sum of two entries as their key and vector of pair of indices as their value. We should not check duplicates at this time because the index matters later on. For example, even though nums[3] + nums[4] == nums[2] + nums[4] == 3, storing only one of two pairs result wrong answer since one of nums[2] and nums[3] can be used by other pivot among i, j, k, l. After filling out the hashmap, now we scan entire array again. At this time we should check duplicates for all the four pivots. We can easily do this by two for loops for first two pivots. For k & l, we only approach them when hash.count(nums[i]+nums[j]) != 0. At this time, two conditions should be used to prevent duplicates. One is k > j, which prevents a combination of index {0 3 2 4}... After that, we should check if the answer already exists. To do this, we only need to check the latest vector that we put in to the result vector because the array has already been sorted and two identical answers always occur continuously.
+By scanning two entries at a time, 
+we fill out the hashmap which has sum of two entries as their key 
+and vector of pair of indices as their value. 
+We should not check duplicates at this time 
+because the index matters later on. 
+For example, even though nums[3] + nums[4] == nums[2] + nums[4] == 3, 
+storing only one of two pairs result wrong answer 
+since one of nums[2] and nums[3] can be used by other pivot among i, j, k, l. 
+After filling out the hashmap, now we scan entire array again. 
+At this time we should check duplicates for all the four pivots. 
+We can easily do this by two for loops for first two pivots. 
+For k & l, we only approach them when hash.count(nums[i]+nums[j]) != 0. 
+At this time, two conditions should be used to prevent duplicates. 
+One is k > j, which prevents a combination of index {0 3 2 4}... 
+After that, we should check if the answer already exists. 
+To do this, we only need to check the latest vector 
+that we put in to the result vector 
+because the array has already been sorted 
+and two identical answers always occur continuously.
 */

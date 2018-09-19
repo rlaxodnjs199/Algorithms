@@ -40,14 +40,29 @@ int main() {
 
 /*
 1. Idea
-To be a valid parentheses, they have to present in a right order.
-Stack is a great way to store intermediate results since we need FILO structure.
-I also used unordered_map to store valid pair of parentheses, one as a key and the other as a value.
-We return true only when the string is empty at the beginning or successfully becomes empty after passing through the string.
+To be a valid parentheses, 
+they have to present in a right order.
+Stack is a great way to store intermediate results 
+since we need FILO structure.
+I also used unordered_map to store valid pair of parentheses, 
+one as a key and the other as a value.
+We return true only when the string is empty at the beginning 
+or successfully becomes empty after passing through the string.
 2. Special case
 When the string is empty at the beginning, we can return true.
-When the string is size of 1 at the beginning, we can return false.
-However there is more neat way to do this other than writing one more if statement.
+When the string is size of 1 at the beginning, 
+we can return false.
+However there is more neat way to do this other than 
+writing one more if statement.
 That is (!stk.empty() && stk.top() == table[s[i]]) condition statement.
-Because of !stk.empty(), when any of invalid single char is left in the stack, it can return false. 
+Because of !stk.empty(), when any of invalid single char is left in the stack, 
+it can return false.
+3. Stack usage reminder
+#include <stack>
+stack<type> stk: Declare stack
+stk.push(element)
+stk.top()
+stk.pop()
+stk.empty()
+stk.size()
 */ 

@@ -40,5 +40,13 @@ int main() {
 
 /*
 1. Idea
-To do this in one-pass, we need to declare two pointers to the head and set difference between two by n. First proceed p1 for n times and then proceed both p1 and p2 until p1->next reaches a nullptr. The only special case is that removing first element of the linked list. In this case, p1 already reaches nullptr so accessing p1->next invokes segment default error. When p1 already reaches nullptr, we can simply return head->next to skip first element.
+To do this in one-pass, 
+we need to declare two pointers to the head and set difference 
+between two by n. First proceed p1 for n times 
+and then proceed both p1 and p2 until p1->next reaches a nullptr. 
+The only special case is that removing first element of the linked list. 
+In this case, p1 already reaches nullptr 
+so accessing p1->next invokes segment default error. 
+When p1 already reaches nullptr, 
+we can simply return head->next to skip first element.
 */
