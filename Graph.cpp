@@ -34,10 +34,12 @@ class graph {
 /*
 I used unordered_map instead of vector for storing vertexes
 because in this way we can find certain vertex in O(1) time
-by storing its position on the map. It is still possible to
-search vertex in O(1) when we use vector but the case might
-be restricted to use integer vertex value(size of vector 
-matters in this case). The component of vertex is a vector
-of pairs that stores destination vertex and cost of the edge.
-
+by storing its position on the map. The component of vertex 
+is a vector of pairs that stores destination vertex 
+and cost of the edge.
+Two common ways to implement graph is to use adjacency matrix.
+This 2D array implementation enables search time of O(1) but
+take O(V^2) space. Another way is using an array of linked lists.
+This implementation can save space to O(V+E) but finding specific
+edge is O(V).
 */
