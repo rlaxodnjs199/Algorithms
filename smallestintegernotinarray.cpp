@@ -44,6 +44,7 @@ class Solution {
       }
     }
 };
+
 int main() {
   Solution s;
   std::vector<int> nums = {1, 3, 4, 20, 3, 6};
