@@ -6,15 +6,14 @@ class Node {
   public:
   int data;
   Node* next;
-}
+};
 class LinkedList {
   public:
   LinkedList() {}
   void print();
   void reverseprint(Node* p);
   void insert(int data, int position);
-  void delete(int position);
-}
+};
 
 void LinkedList::print() {
   Node* temp;
@@ -34,7 +33,7 @@ void LinkedList::reverseprint(Node* p) {
 }
 
 void LinkedList::insert(int data, int position) {
-  temp = new Node;
+  Node* temp = new Node;
   temp->data = data;
   if (position == 1 && head == NULL) {
     temp->next = NULL;
@@ -46,3 +45,4 @@ void LinkedList::insert(int data, int position) {
   }
   temp->next = temp2->next;
   temp2->next = temp;
+}
