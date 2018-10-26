@@ -1,3 +1,12 @@
+/*
+1. Idea
+Quick sort picks a pivot to compare with other elements.
+In this implementation, partitionIndex puts elements
+smaller than pivot to the left of the wall and the others
+to the right of the wall. Only pivot is in the right place
+after this function call. We repeat process again and again
+*/
+
 #include <iostream>
 #include <vector>
 void quicksort(std::vector<int> nums, int start_index, int end_index) {
