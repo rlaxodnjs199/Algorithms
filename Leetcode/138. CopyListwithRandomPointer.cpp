@@ -47,6 +47,8 @@ public:
       p2 = p1->random;
       p2->random = p2->next? p2->next->random : NULL;
     }
+    // We lose pointer to the head of deep copy after third iteration,
+    // So we store it before executing the loop.
     newhead = p1->random;
     for (p1 = head; p1 != NULL; p1 = p1->next) {
       p2 = p1->random;
