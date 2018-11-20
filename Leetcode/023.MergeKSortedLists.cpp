@@ -1,3 +1,14 @@
+/*
+1. Idea
+The Idea is to use priority_queue, 
+which is implemented based on heap data structure.
+It is more faster than repeating merging every two sorted lists 
+because when we do that, the run time might be O(k^2) 
+where k is the total number of entries of all elements in list nodes.
+However, when we use priority_queue, inserting each element to the queue
+takes O(log k) time, so the run time would be O(k logk).
+*/
+
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -44,14 +55,3 @@ int main() {
   ListNode* head = s.mergeKLists(lists);
   print_ListNode(head);
 }
-
-/*
-1. Idea
-The Idea is to use priority_queue, 
-which is implemented based on heap data structure.
-It is more faster than repeating merging every two sorted lists 
-because when we do that, the run time might be O(k^2) 
-where k is the total number of entries of all elements in list nodes.
-However, when we use priority_queue, inserting each element to the queue
-takes O(log k) time, so the run time would be O(k logk).
-*/
