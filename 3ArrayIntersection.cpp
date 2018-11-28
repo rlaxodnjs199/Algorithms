@@ -16,9 +16,12 @@ class Solution {
         p2++;
         p3++;
       }
-      else if (arrays[0][p1] < arrays[1][p2]) p1++;
-      else if (arrays[1][p2] < arrays[2][p3]) p2++;
-      else p3++;
+      while (arrays[0][p1] < arrays[1][p2] || arrays[0][p1] < arrays[2][p3]) p1++;
+      while (arrays[1][p2] < arrays[0][p1] ||arrays[1][p2] < arrays[2][p3]) p2++;
+      while (arrays[2][p3] < arrays[0][p1] ||arrays[2][p3] < arrays[1][p2]) p3++;
+      //else if (arrays[0][p1] < arrays[1][p2]) p1++;
+      //else if (arrays[1][p2] < arrays[2][p3]) p2++;
+      //else p3++;
     }
   }
   std::vector<int> FindthreeunsortedarraysIntersection(std::vector<std::vector<int>> arrays) {
