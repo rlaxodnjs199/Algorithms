@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 template<typename T> void print_vec(T& vec) {
   for (auto& nums : vec) {
@@ -13,6 +14,7 @@ class Solution {
   public:
     std::vector<std::vector<int>> permutation(std::vector<int>& nums) {
       std::vector<std::vector<int>> result;
+      std::sort(nums.begin(), nums.end());
       permutationUtil(result, nums, 0);
       return result;
     }
