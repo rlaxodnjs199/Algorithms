@@ -1,3 +1,13 @@
+/*
+1. Idea
+Difference between permutation1 and permutation2:
+Existence of repeated numbers
+How to avoid swapping same stuff?
+1. Sort array first so that repeated numbers are located next to each other
+2. Don't pass nums by reference: Pass by reference ruins sorted order and mix nums
+For permutation1, we can do both pass by reference & pass by paremeter but
+for permutation2, we can only do pass by paremeter in this reason.
+*/
 #include <iostream>
 #include <algorithm>
 #include <vector>

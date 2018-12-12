@@ -30,7 +30,7 @@ class Solution {
 };
 int main() {
   Solution s;
-  std::vector<int> nums = {1,2,3,4,5};
+  std::vector<int> nums = {1,2,3,4};
   std::vector<std::vector<int>> result = s.permutation(nums);
   print_vec(result);
 }
