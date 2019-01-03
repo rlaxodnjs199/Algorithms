@@ -1,28 +1,27 @@
-import os
-THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-demandinputfilename = os.path.join(THIS_FOLDER, 'demand.txt')
-distanceinputfilename = os.path.join(THIS_FOLDER, 'distance.txt')
-outputfilename = os.path.join(THIS_FOLDER, 'result.lp')
+demandinputfilename = 'demand.txt'
+distanceinputfilename = 'distance.txt'
+outputfilename = 'result.lp'
 
 with open(demandinputfilename) as d:
-    demand = list(map(int, d.readline().split(' ')))
+    demand = d.readlines()
 with open(distanceinputfilename) as f:
-    data = f.readlines()
+    distance = f.readlines()
 result = open(outputfilename, "w")
 
 ObjStr = "Minimize\nObj:\n"
 row_index = 1
-for row in data:
-    row = map(int, row.split(' '))
+for demand_row, distance_row in zip(demand, distance):
+    demand_row = list(map(int, demand_row.split(' ')))
+    distance_row = list(map(int, distance_row.split(' ')))
     col_index = 1
-    for i in row:
-        ObjStr = ObjStr + str(i * demand[row_index-1]) + " " + "X" + str(row_index) + str(col_index) + " + "
+    for demand_col, distance_col in zip(demand_row, distance_row):
+        ObjStr = ObjStr + str(demand_col * distance_col) + " " + "X" + str(row_index) + str(col_index) + " + "
         col_index += 1
     ObjStr += '\n'
     row_index += 1
 ObjStr = ObjStr[:-4] + "\n\nSubject to\n"
 row_index = 1
-for row in data:
+for row in distance:
     col_index = 1
     row = row.split(' ')
     ObjStr += "C: "
