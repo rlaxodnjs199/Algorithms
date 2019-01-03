@@ -1,8 +1,10 @@
-inputfilename = 'data.txt'
+demandinputfilename = 'demand.txt'
+distanceinputfilename = 'distance.txt'
 outputfilename = 'result.lp'
 
-with open(inputfilename) as f:
-    demand = map(int, f.readline().split(' '))
+with open(demandinputfilename) as d:
+    demand = map(int, d.readline().split(' '))
+with open(distanceinputfilename) as f:
     data = f.readlines()
 result = open(outputfilename, "w")
 
