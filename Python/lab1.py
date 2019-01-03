@@ -1,9 +1,11 @@
-demandinputfilename = 'demand.txt'
-distanceinputfilename = 'distance.txt'
-outputfilename = 'result.lp'
+import os
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+demandinputfilename = os.path.join(THIS_FOLDER, 'demand.txt')
+distanceinputfilename = os.path.join(THIS_FOLDER, 'distance.txt')
+outputfilename = os.path.join(THIS_FOLDER, 'result.lp')
 
 with open(demandinputfilename) as d:
-    demand = map(int, d.readline().split(' '))
+    demand = list(map(int, d.readline().split(' ')))
 with open(distanceinputfilename) as f:
     data = f.readlines()
 result = open(outputfilename, "w")
