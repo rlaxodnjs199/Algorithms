@@ -24,24 +24,26 @@ class Solution {
       }
     }
     std::vector<std::vector<int>> findsubsequences2(std::vector<int>& nums) {
-    std::set<std::vector<int>> result;
-    std::vector<std::vector<int>> temp(1);
-    for (int i = 0; i < nums.size(); i++) {
-      int n = temp.size();
-      for (int j = 0; j < n; j++) {
-        std::vector<int> temp2 = temp[j];
-        temp2.push_back(nums[i]);
-        if (temp2.size() > 1) result.insert(temp2);
-        temp.push_back(temp2);
+      std::set<std::vector<int>> result;
+      std::vector<std::vector<int>> temp(1);
+      for (int i = 0; i < nums.size(); i++) {
+        int n = temp.size();
+        for (int j = 0; j < n; j++) {
+          if (temp[j].empty() || temp[j].back() <= nums[i]) {
+            std::vector<int> temp2 = temp[j];
+            temp2.push_back(nums[i]);
+            if (temp2.size() > 1) result.insert(temp2);
+            temp.push_back(temp2);
+          }
+        }
       }
-    }
-    return std::vector<std::vector<int>>(result.begin(), result.end());
+      return std::vector<std::vector<int>>(result.begin(), result.end());
     }
 };
 int main() {
-  std::vector<int> nums = {4, 6, 7, 7};
+  std::vector<int> nums = {4, 3, 7, 7};
   Solution s;
-  std::vector<std::vector<int>> result = s.findsubsequences2(nums);
+  std::vector<std::vector<int>> result = s.findsubsequences1(nums);
   for (auto vec : result) {
     std::cout << "[ ";
     for (auto num : vec) {
