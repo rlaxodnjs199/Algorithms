@@ -64,15 +64,14 @@ class Solution2 {
       if (root != nullptr) {
         delete_tree(root->left);
         delete_tree(root->right);
-        free(root);
-        root = nullptr;
+        delete root;
       }
     }
     std::vector<TreeNode*> generateTrees(int n) {
-      vector<TreeNode*> result(1, nullptr);
+      std::vector<TreeNode*> result(1, nullptr);
       for (int i = 1; i <= n; i++) {
         int m = result.size();
-        vector<TreeNode*> temp_result;
+        std::vector<TreeNode*> temp_result;
         for (int j = 0; j < m; j++) {
           add_new_element(temp_result, result[j], i);
           delete_tree(result[j]);
@@ -81,4 +80,4 @@ class Solution2 {
       }
       return result;
     }
-};
+}
