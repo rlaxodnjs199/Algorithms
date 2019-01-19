@@ -12,6 +12,22 @@ working like a heap data structure.
 algorithm has to have a certain condition statement to stop the
 call at a certain moment. Should not forget to give them
 a condition!
+3. There are on average O(logN) splits since we split array to two halves.
+There are three worst scenarios that make quicksort O(n^2) runtime.
+1) Array is sorted: when we choose 'end' as a pivot, size of second half of
+the array chosen by partition is always 1.
+2) Array is reverse sorted: when we choose 'end' as a pivot, size of first half of
+the array chosen by partition is always 1.
+3) All elements are same: when we choose 'end' as a pivot, size of first half of
+the array chosen by partition is always 1.
+4. Worst space complexity is O(logN) from stack frame.
+5. How to improve quicksort to avoid worst case?
+Choosing optimal pivot: Use median value between array[low], array[high], and array[mid]
+mid = low + (hi - low) / 2;
+if (A[mid] < A[low]) swap;
+if (A[low] > A[hi]) swap;
+if (A[mid] < A[hi]) swap;
+choose A[hi] as pivot
 */
 
 #include <iostream>
