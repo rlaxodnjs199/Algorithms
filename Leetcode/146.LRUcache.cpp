@@ -2,14 +2,14 @@
 #include <list>
 #include <unordered_map> 
 #include <utility> //std::pair
-class LRUcache {
+class LRUcache1 {
   private:
     std::unordered_map<int, std::list<std::pair<int, int>>::iterator> m_hash;
     std::list<std::pair<int, int>> m_list;
     size_t m_capacity;
     int m_size;
   public:
-    LRUcache(int num): m_capacity(num) {}
+    LRUcache1(int num): m_capacity(num) {}
     int get(int key) {
       auto hash_key_position = m_hash.find(key);
       if (hash_key_position == m_hash.end()) {
@@ -37,6 +37,65 @@ class LRUcache {
       m_size++;
     }
 };
+
+#include <queue>
+class LRUcache2 {
+  private:
+  std::unordered_map<int, std::deque<std::pair<int, int>>::iterator> hashmap;
+  std::deque<std::pair<int, int>> deq;
+  int size;
+  int capacity;
+  public:
+  LRUcache2(int num) : deq(num), capacity(num), size(0) {}
+  int get(int key) {
+    if (hashmap.count(key)) {
+      deq.push_back(*hashmap[key]);
+      deq.erase(hashmap[key]);
+      hashmap[key] = deq.end() - 1;
+      return deq.back().second;
+    }
+    else return -1;
+  }
+  void set(int key, int value) {
+    if (hashmap.count(key)) {
+      if ((*hashmap[key]).second == value) {
+        std::cout << "Key & Val already exists" << std::endl;
+        deq.push_back(*hashmap[key]);
+        deq.erase(hashmap[key]);
+        hashmap[key] = deq.end() - 1;
+      }
+      else {
+        std::cout << "Update Val" << std::endl;
+        deq.push_back(std::make_pair(key, value));
+        deq.erase(hashmap[key]);
+        hashmap[key] = deq.end() - 1;
+      }
+    }
+    else {
+      if (size == capacity) {
+        std::cout << "I'm here max capacity" << std::endl;
+        hashmap.erase(deq.front().first);
+        deq.pop_front();
+        deq.push_back(std::make_pair(key, value));
+        hashmap[key] = deq.end() - 1;
+      }
+      else {
+        std::cout << "I'm here insert new" << std::endl;
+        deq.push_back(std::make_pair(key, value));
+        hashmap[key] = deq.end() - 1;
+        size++;
+      }
+    }
+  }
+};
+
+int main() {
+  LRUcache2 cache(2);
+  cache.set(1, 1);
+  cache.set(2, 2);
+  cache.set(3, 3);
+  std::cout << cache.get(1);
+}
 
 /* 1.Idea
 First time reading an instruction, I thought about how to combine

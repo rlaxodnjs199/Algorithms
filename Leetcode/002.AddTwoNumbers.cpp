@@ -2,7 +2,13 @@
 struct ListNode {
   int val;
   ListNode* next;
-  ListNode(int x): val(x), next(NULL) {}
+  ListNode(int x): val(x), next(nullptr) {}
+  /*
+  ListNode(int x) {
+    this->val = x;
+    this->next = nullptr;
+  }
+  */
 };
 class Solution {
   public:
@@ -22,13 +28,11 @@ class Solution {
         }
         carry = sum / 10;
         sum = sum % 10;
-        ListNode* newNode = new ListNode(sum);
-        temp->next = newNode;
+        temp->next = new ListNode(sum);
         temp = temp->next;
       }
       if (carry) {
-        ListNode* newNode = new ListNode(1);
-        temp->next = newNode;
+        temp->next = new ListNode(carry);
       }
       return dummy.next;
     }
@@ -38,15 +42,13 @@ int main() {
   ListNode rl1(0);
   ListNode *l1 = &rl1;
   for (int i = 3; i > 0; i--) {
-    ListNode* temp = new ListNode(i);
-    l1->next = temp;
+    l1->next = new ListNode(i);
     l1 = l1->next;
   }
   ListNode rl2(0);
   ListNode *l2 = &rl2;
   for (int i = 9; i > 3; i--) {
-    ListNode* temp = new ListNode(i);
-    l2->next = temp;
+    l2->next = new ListNode(i);
     l2 = l2->next;
   }
   ListNode* ans = s.addTwoNumbers(rl1.next, rl2.next);
