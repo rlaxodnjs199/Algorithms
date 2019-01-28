@@ -23,3 +23,34 @@ void PostorderTraversal(TreeNode* head) {
   PostorderTraversal(head->right);
   std::cout << head->val << std::endl;
 }
+#include <queue>
+void LevelorderTraversal(TreeNode* head) {
+  std::queue<TreeNode*> que;
+  que.push(head);
+  while (!que.empty()) {
+    int level_count = que.size();
+    while (level_count--) {
+      TreeNode* temp = que.front();
+      std::cout << temp->val << std::endl;
+      que.pop();
+      if (temp->left) que.push(temp->left);
+      if (temp->right) que.push(temp->right);
+    }
+    std::cout << std::endl;
+  }
+}
+#include <stack>
+void IterativeInorder(TreeNode* head) {
+  std::stack<TreeNode*> stk;
+  stk.push(head);
+  TreeNode* cur_node = head;
+  while (!stk.empty() || cur_node) {
+    while (cur_node) {
+      stk.push(cur_node);
+      cur_node = cur_node->left;
+    }
+    cur_node = stk.top()->right;
+    std::cout << stk.top()->val;
+    stk.pop();
+  }
+}
