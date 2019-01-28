@@ -42,7 +42,6 @@ void LevelorderTraversal(TreeNode* head) {
 #include <stack>
 void IterativeInorder(TreeNode* head) {
   std::stack<TreeNode*> stk;
-  stk.push(head);
   TreeNode* cur_node = head;
   while (!stk.empty() || cur_node) {
     while (cur_node) {
