@@ -51,5 +51,4 @@ int main() {
     }
     std::cout << "] ";
   }
-
 }
