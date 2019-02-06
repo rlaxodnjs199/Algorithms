@@ -53,3 +53,24 @@ void IterativeInorder(TreeNode* head) {
     stk.pop();
   }
 }
+void IterativePostorder(TreeNode* head) {
+  std::stack<TreeNode*> stk;
+  TreeNode* cur = head;
+  TreeNode* last = nullptr;
+  while (!stk.empty() || cur) {
+    if (cur) {
+      stk.push(cur);
+      cur = cur->left;
+    }
+    else {
+      if (stk.top()->right || last != stk.top()->right) {
+        cur = stk.top()->right;
+      }
+      else {
+        std::cout << stk.top()->val;
+        last = stk.top();
+        stk.pop();
+      }
+    }
+  }
+}
