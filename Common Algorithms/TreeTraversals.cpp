@@ -114,7 +114,7 @@ void IterativePostorder(TreeNode* head) {
       cur = cur->left;
     }
     else {
-      if (stk.top()->right || last != stk.top()->right) {
+      if (stk.top()->right && last != stk.top()->right) {
         cur = stk.top()->right;
       }
       else {
