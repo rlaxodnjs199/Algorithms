@@ -1,3 +1,21 @@
+/*
+Problem:
+Given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse
+order and each of their nodes contain a single digit.
+Add two lists and return it as a linked list.
+
+Idea:
+We traverse two linked lists from heads. We find sum and
+carry every loop, and declare new listnode with a single
+digit from sum.
+
+What I leared:
+The reason we use heap allocation is because of the life
+span of ListNode declared inside of function on the stack.
+They lose information right after the function ends, so 
+if we want to keep information in the main function after
+calling addTwoNumbers, we need to declare information on heap.
+*/
 #include <iostream>
 struct ListNode {
   int val;

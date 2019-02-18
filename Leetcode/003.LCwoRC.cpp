@@ -1,3 +1,22 @@
+/*
+Problem:
+Given a string, find the length of the longest substring
+without repeating characters.
+
+Idea:
+Sliding window technique.
+When we detect duplicate within range of [start ~ i],
+we update start to be duplicate character last occurance
+index + 1. Important thing here is that we should not
+care duplicate 'before start' because it was already
+excluded.
+
+Things I leared:
+For ASCII char, they have integer values from 0 ~ 255.
+Therefore vector<int> hashmap(256, -1) can be used as a
+map to store integer data corresponding to all individual
+ASCII chars.
+*/
 #include <iostream>
 #include <vector>
 #include <string>
