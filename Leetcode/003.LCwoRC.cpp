@@ -24,18 +24,16 @@ ASCII chars.
 class Solution {
   public:
     int lengthOfLongestSubstring(std::string s) {
-      std::vector<int> array(256, -1);
-      int start = 0;
-      int maxlen = 1;
-      for (int i = 0; i < s.size(); i++) {
-        if (array[s[i]] >= start) {
-          start = array[s[i]] + 1;
+      std::vector<int> hashmap(256, -1);
+      int max_len = 0;
+      for (int start = 0, end = 0; end < s.size(); end++) {
+        if (hashmap[s[end]] >= start) {
+          start = hashmap[s[end]] + 1;
         }
-        array[s[i]] = i;
-        maxlen = std::max(maxlen, i - start + 1);
-        std::cout << start << "  " << maxlen << std::endl;
+        hashmap[s[end]] = end;
+        max_len = std::max(max_len, end - start + 1);
       }
-      return maxlen;
+      return max_len;
     }
 };
 int main() {
