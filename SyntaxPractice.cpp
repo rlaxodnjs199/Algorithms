@@ -10,7 +10,7 @@ void vector_practice() {
   std::vector<int> A = {1, 2, 3, 4};
   A.push_back(5);
   //#include <algorithm> -> std::sort(begin_iterator, end_iterator, comparison), 
-                          //std::binary_search(begin_iterator, end_iterator, target)
+  //std::binary_search(begin_iterator, end_iterator, target)
   //#include <functional> -> std::greater<>(), std::less<>() ...
   std::sort(A.begin(), A.end(), std::less<>()); // O(N logN)
   //Binary_search works only when the object is sorted in ascending order.(less<>())
