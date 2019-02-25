@@ -1,27 +1,45 @@
+/*
+Problem:
+Given a string s, find the longest palindrome substring in s.
+
+Idea:
+When we traverse the input string, we pick index i as a center
+of a palindrome substring and expand the substring as much as
+possible. This takes O(n^2) runtime complexity and O(1) space.
+We can also do dp solution for this problem but the complexity
+is same while space complexity goes up to O(n^2). Therefore
+expanding both end of the string starts from each index is more
+efficient algorithm.
+
+What I learned:
+First time, I made mistake setting constraint for tStart and tEnd.
+tStart should be greater than 0 and tEnd should be less than
+s.size()-1 since we expand them by 1 and they should meet 
+string size constraint after update.
+*/
 #include <iostream>
 #include <algorithm>
 class Solution {
   public:
     std::string LPS(std::string s) {
-      if (s.empty()) return s;
-      int maxlen = 1;
+      if (s.empty() || s.size() == 1) return s;
       int start = 0;
-      for (int i = 0; i < s.size()-1; i++) {
-        if ((s.size()-i) <= maxlen/2) break;
-        int j = 1, k = 1;
-        while ((i+j) < s.size() && s[i] == s[i+j]) {
-          j++;
+      int max_len = 1;
+      for (int i = 0; i < s.size(); i++) {
+        if (s.size() - i < max_len/2) break;
+        int tStart = i;
+        while (i < s.size()-1 && s[i] == s[i+1]) i++;
+        int tEnd = i;
+        while (tStart > 0 && tEnd < s.size()-1 && s[tStart-1] == s[tEnd+1]) {
+          tStart--;
+          tEnd++;
         }
-        while ((i-k) >= 0 && (i+k+j-1) < s.size() && s[i-k] == s[i+k+j-1]) {
-          k++;
+        if (max_len <= tEnd - tStart + 1) {
+          start = tStart;
+          max_len = tEnd - tStart + 1;
         }
-        int tempmax = (i+k+j-2)-(i-k+1)+1;
-        if (tempmax >= maxlen) {
-          start = i-k+1;
-          maxlen = tempmax;
-        } 
       }
-      return s.substr(start, maxlen);
+      return s.substr(start, max_len);
     }
 };
 int main() {
@@ -29,22 +47,3 @@ int main() {
   std::string str = "abcdcbakkukkabcdcba";
   std::cout << s.LPS(str) << std::endl;
 }
-/*
-1. Idea
-Palindromic String: When we flip a string based on median index character,
-both left side and right side have to be identical. We need to do at least
-one-pass measurement because we can't skip measuring certain index.
-Now, can we use dynamic programming here?
-I don't think so because there is no guarantee that we can use suboptimal solutions
-to build optimal solution. For example, in "abcdcbakkukkabcdcba", suboptimal solution
-might be "abcba" with median character "c". However, the optimal solution is the entire
-string, which has median character of "u". We cannot guarantee a solution is optimal before
-we measuring each index as a median pivot of the palindromic string.
-Oh, one thing I notice is that if the remaining length of the string is less than the palindromic
-substring we found, than we can simply end the function.
-
-2. First time, I was wrong because when I devide the cases by s[i]==s[i+1] and the rest,
-I can't manage where there are more than 3 continuosly repeating characters.
-Therefore, what I want to do is first go to the two edges for the substring with
-repeating characters, and then measure if s[i-something] == s[i+something].
-*/
