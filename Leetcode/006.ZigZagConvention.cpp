@@ -1,3 +1,13 @@
+/*
+Problem:
+Convert given string to zigzag pattern
+
+Idea:
+We declare vector of string of size Numrow to store
+each character in correct order. Declare to for loop
+to traverse string and store in vector in ascending
+order first then in descending order next.
+*/
 #include <iostream>
 #include <vector>
 class Solution {
