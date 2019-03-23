@@ -2,20 +2,20 @@
 #include <vector>
 #include <climits>
 #include <algorithm>
-int networkdelay1(std::vector<std::vector<int>>& times, int N, int K) {
+int networkdelay_bellmanford(std::vector<std::vector<int>>& times, int N, int K) {
   std::vector<int> delay(N, INT_MAX);
-  delay[K-1] = 0;
+  delay[K] = 0;
   while (--N) {
     for (auto& edge : times) {
-      if (delay[edge[0]-1] != INT_MAX) {
-        delay[edge[1]-1] = std::min(delay[edge[1]-1], delay[edge[0]] + edge[2]);
+      int src = edge[0];
+      int dst = edge[1];
+      int cost = edge[2];
+      if (delay[src] != INT_MAX) {
+        delay[dst] = std::min(delay[dst], delay[src] + cost);
       }
     }
   }
-  int maxdelay = 0;
-  for (int& d : delay) {
-    maxdelay = std::max(maxdelay, d);
-  }
+  int maxdelay = *std::max_element(delay.begin(), delay.end());
   return maxdelay == INT_MAX? -1 : maxdelay;
 }
 
