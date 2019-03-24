@@ -31,3 +31,28 @@ bool acyclic(std::vector<std::vector<int>>& graph, std::vector<bool>& visited, s
   dfspath[course] = false;
   return true;
 }
+
+#include <queue>
+bool canFinish_bfs(int numCourses, std::vector<std::pair<int, int>>& prerequisites) {
+  std::vector<std::vector<int>> graph(numCourses);
+  std::vector<int> indegree(numCourses, 0);
+  for (auto& edge : prerequisites) {
+    graph[edge.second].push_back(edge.first);
+    indegree[edge.first]++;
+  }
+  std::queue<int> q;
+  for (int i = 0; i < numCourses; i++) {
+    if (indegree[i] == 0) q.push(i);
+  }
+  int count = 0;
+  while (!q.empty()) {
+    int cur = q.front();
+    q.pop();
+    for (auto& neighbor : graph[cur]) {
+      indegree[neighbor]--;
+      if (!indegree[neighbor]) q.push(neighbor);
+    }
+    count++;
+  }
+  return count == numCourses;
+}
