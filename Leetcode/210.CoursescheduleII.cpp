@@ -31,3 +31,28 @@ bool isacyclic(std::vector<std::vector<int>>& graph, std::vector<bool>& visited,
   detectcycle[course] = false;
   return true;
 }
+
+#include<queue>
+std::vector<int> findorder_bfs(int numCourses, std::vector<std::pair<int, int>>& prerequisites) {
+  std::vector<std::vector<int>> graph(numCourses);
+  std::vector<int> indegrees(numCourses);
+  for (auto& edge : prerequisites) {
+    graph[edge.second].push_back(edge.first);
+    indegrees[edge.first]++;
+  }
+  std::queue<int> q;
+  for (int i = 0; i < numCourses; i++) {
+    if (indegrees[i] == 0) q.push(i);
+  }
+  std::vector<int> result;
+  while (!q.empty()) {
+    int cur = q.front();
+    result.push_back(cur);
+    q.pop();
+    for (auto& neighbor : graph[cur]) {
+      if (--indegrees[neighbor] == 0) q.push(neighbor);
+    }
+  }
+  std::reverse(result.begin(), result.end());
+  return result.size() == numCourses? result : std::vector<int>();
+}
