@@ -14,7 +14,7 @@ I had two choices to check if target - nums[i] exists
 before or not. One is using 'find' and the other is
 using 'count'. In this case, 'find' is more preferable
 because after we check whether it exists or not,
-we have to accest the content of it. Using find and
+we have to access the content of it. Using find and
 return an iterator helps us avoid going through the 
 hashing process twice(check existence, access contents).
 Also, if I push nums[i] to the map before checking
