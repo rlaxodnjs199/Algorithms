@@ -1,3 +1,8 @@
+/*
+Problem:
+Given a linked list, swap every two adjacent nodes and return its head.
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+*/
 #include <iostream>
 template<typename T> void print_ListNode(T& l) {
   std::cout << "[ ";
