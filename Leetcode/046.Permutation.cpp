@@ -27,6 +27,20 @@ class Solution {
         std::swap(nums[begin], nums[i]);
       }
     }
+    std::vector<std::vector<int>> permutation2(std::vector<int>& nums) {
+      std::vector<std::vector<int>> result(1);
+      for (int i : nums) {
+        std::vector<std::vector<int>> temp(std::move(result));
+        for (auto& j : temp) {
+          for (int k = 0; k <= j.size(); k++) {
+            std::vector<int> tp(j);
+            tp.insert(tp.begin() + k, i);
+            result.push_back(tp);
+          }
+        }
+      }
+      return result;
+    }
 };
 int main() {
   Solution s;
