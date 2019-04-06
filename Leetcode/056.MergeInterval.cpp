@@ -65,4 +65,18 @@ class Solution {
     result.push_back(temp);
     return result;
   }
+  
+  std::vector<Interval> merge2(std::vector<Interval>& intervals) {
+    std::vector<Interval> result;
+    if (intervals.empty()) return result;
+    std::sort(intervals.begin(), intervals.end(), [](const Interval& a, const Interval& b) {return a.start < b.start;});
+    result.push_back(intervals[0]);
+    for (int i = 1; i < intervals.size(); i++) {
+      if (intervals[i].start <= result.back().end) {
+        result.back().end = std::max(result.back().end, intervals[i].end);
+      }
+      else {
+        result.push_back(intervals[i]);
+      }
+    }
 };
